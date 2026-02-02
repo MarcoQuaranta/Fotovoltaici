@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
+/* Otovo-inspired color palette */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #1e3a8a;
+  --color-primary-light: #3b82f6;
+  --color-secondary: #f97316;
+  --color-secondary-light: #fed7aa;
+  --color-dark: #1e1b4b;
+  --color-success: #10b981;
+  --color-bg-light: #f8fafc;
+  --color-bg-cream: #fffbeb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Primary utilities */
+.text-primary { color: #1e3a8a; }
+.bg-primary { background-color: #1e3a8a; }
+.hover\:bg-primary:hover { background-color: #1e3a8a; }
+.border-primary { border-color: #1e3a8a; }
+.ring-primary { --tw-ring-color: #1e3a8a; }
+.focus\:ring-primary:focus { --tw-ring-color: #1e3a8a; }
+
+/* Primary light */
+.text-primary-light { color: #3b82f6; }
+.bg-primary-light { background-color: #3b82f6; }
+
+/* Secondary (orange) utilities */
+.text-secondary { color: #f97316; }
+.bg-secondary { background-color: #f97316; }
+.hover\:bg-secondary:hover { background-color: #f97316; }
+.border-secondary { border-color: #f97316; }
+
+/* Secondary light */
+.bg-secondary-light { background-color: #fed7aa; }
+
+/* Dark utilities */
+.text-dark { color: #1e1b4b; }
+.bg-dark { background-color: #1e1b4b; }
+
+/* Success utilities */
+.text-success { color: #10b981; }
+.bg-success { background-color: #10b981; }
+
+/* Background utilities */
+.bg-light { background-color: #f8fafc; }
+.bg-cream { background-color: #fffbeb; }
+
+/* Gradient utilities */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom button styles */
+.btn-primary {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #f97316;
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #1e1b4b;
+  font-family: 'Poppins', sans-serif;
 }
