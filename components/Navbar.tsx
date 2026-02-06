@@ -1,40 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled || isOpen
+        ? "bg-white/90 backdrop-blur-sm border-b border-gray-100"
+        : "bg-transparent border-b border-transparent"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </div>
-            <span className="text-xl font-bold text-dark">
-              Solar<span className="text-secondary">Pro</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt="Nexevo"
+              width={140}
+              height={40}
+              className="h-10 w-auto [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(50%)_saturate(1000%)_hue-rotate(180deg)_brightness(90%)_contrast(95%)]"
+              priority
+            />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
-            <Link href="#soluzioni" className="text-dark hover:text-primary transition-colors font-medium">
-              Soluzioni
-            </Link>
-            <Link href="#prezzi" className="text-dark hover:text-primary transition-colors font-medium">
-              Prezzi
+          <div className="hidden lg:flex items-center gap-10">
+            <Link href="#chi-siamo" className="text-dark hover:text-primary transition-colors font-medium">
+              About us
             </Link>
             <Link href="#vantaggi" className="text-dark hover:text-primary transition-colors font-medium">
               Perché noi
             </Link>
+            <Link href="#prezzi" className="text-dark hover:text-primary transition-colors font-medium">
+              Soluzioni
+            </Link>
             <Link href="#recensioni" className="text-dark hover:text-primary transition-colors font-medium">
-              Recensioni
+              Dicono di noi
             </Link>
           </div>
 
@@ -44,14 +59,14 @@ export default function Navbar() {
               href="#preventivo"
               className="btn-primary inline-block"
             >
-              Calcola risparmio
+              Richiedi consulenza
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,29 +80,31 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 py-4">
+        <div className={`lg:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 ease-in-out bg-white/90 backdrop-blur-sm ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}>
+          <div className="py-4 px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-2">
-              <Link href="#soluzioni" className="px-4 py-3 text-dark hover:bg-gray-50 rounded-xl font-medium" onClick={() => setIsOpen(false)}>
-                Soluzioni
+              <Link href="#chi-siamo" className="py-3 text-dark hover:text-primary transition-colors font-medium" onClick={() => setIsOpen(false)}>
+                About us
               </Link>
-              <Link href="#prezzi" className="px-4 py-3 text-dark hover:bg-gray-50 rounded-xl font-medium" onClick={() => setIsOpen(false)}>
-                Prezzi
-              </Link>
-              <Link href="#vantaggi" className="px-4 py-3 text-dark hover:bg-gray-50 rounded-xl font-medium" onClick={() => setIsOpen(false)}>
+              <Link href="#vantaggi" className="py-3 text-dark hover:text-primary transition-colors font-medium" onClick={() => setIsOpen(false)}>
                 Perché noi
               </Link>
-              <Link href="#recensioni" className="px-4 py-3 text-dark hover:bg-gray-50 rounded-xl font-medium" onClick={() => setIsOpen(false)}>
-                Recensioni
+              <Link href="#prezzi" className="py-3 text-dark hover:text-primary transition-colors font-medium" onClick={() => setIsOpen(false)}>
+                Soluzioni
               </Link>
-              <div className="px-4 pt-2">
+              <Link href="#recensioni" className="py-3 text-dark hover:text-primary transition-colors font-medium" onClick={() => setIsOpen(false)}>
+                Dicono di noi
+              </Link>
+              <div className="pt-2">
                 <Link href="#preventivo" className="btn-secondary block text-center" onClick={() => setIsOpen(false)}>
-                  Calcola risparmio
+                  Richiedi consulenza
                 </Link>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

@@ -1,0 +1,161 @@
+{
+  "marche": [
+    {
+      "id": "trinasolar",
+      "nome": "Trinasolar",
+      "modello": "Vertex S+ 455W",
+      "potenzaPannello": 455,
+      "descrizione": "Pannelli ad alta efficienza con tecnologia half-cut",
+      "garanzia": 25
+    },
+    {
+      "id": "canadian",
+      "nome": "Canadian Solar",
+      "modello": "HiKu6 460W",
+      "potenzaPannello": 460,
+      "descrizione": "Pannelli premium con certificazione TUV",
+      "garanzia": 25
+    }
+  ],
+  "configurazioni": [
+    {
+      "id": "trinasolar-10",
+      "marca": "trinasolar",
+      "numeroPannelli": 10,
+      "potenzaKw": 4.5,
+      "prezzoBase": 2500,
+      "produzioneAnnua": 5850
+    },
+    {
+      "id": "trinasolar-14",
+      "marca": "trinasolar",
+      "numeroPannelli": 14,
+      "potenzaKw": 6.3,
+      "prezzoBase": 3500,
+      "produzioneAnnua": 8190
+    },
+    {
+      "id": "trinasolar-18",
+      "marca": "trinasolar",
+      "numeroPannelli": 18,
+      "potenzaKw": 8.1,
+      "prezzoBase": 4200,
+      "produzioneAnnua": 10530
+    },
+    {
+      "id": "canadian-10",
+      "marca": "canadian",
+      "numeroPannelli": 10,
+      "potenzaKw": 4.6,
+      "prezzoBase": 3000,
+      "produzioneAnnua": 5980
+    },
+    {
+      "id": "canadian-14",
+      "marca": "canadian",
+      "numeroPannelli": 14,
+      "potenzaKw": 6.4,
+      "prezzoBase": 4200,
+      "produzioneAnnua": 8320
+    },
+    {
+      "id": "canadian-18",
+      "marca": "canadian",
+      "numeroPannelli": 18,
+      "potenzaKw": 8.2,
+      "prezzoBase": 4800,
+      "produzioneAnnua": 10660
+    }
+  ],
+  "accessori": [
+    {
+      "id": "batteria-5",
+      "nome": "Batteria di accumulo 5 kWh",
+      "descrizione": "Accumula l'energia prodotta per usarla di sera",
+      "prezzo": 2500,
+      "categoria": "batteria"
+    },
+    {
+      "id": "batteria-10",
+      "nome": "Batteria di accumulo 10 kWh",
+      "descrizione": "Massima autonomia energetica",
+      "prezzo": 4500,
+      "categoria": "batteria"
+    },
+    {
+      "id": "ottimizzatori",
+      "nome": "Ottimizzatori di potenza",
+      "descrizione": "Massimizza la resa in caso di ombreggiamenti",
+      "prezzo": 800,
+      "categoria": "ottimizzazione"
+    },
+    {
+      "id": "wallbox",
+      "nome": "Wallbox ricarica EV 7.4 kW",
+      "descrizione": "Ricarica la tua auto elettrica con energia solare",
+      "prezzo": 1200,
+      "categoria": "mobilita"
+    },
+    {
+      "id": "monitoraggio-pro",
+      "nome": "Monitoraggio avanzato",
+      "descrizione": "Dashboard dettagliata e alert su smartphone",
+      "prezzo": 300,
+      "categoria": "monitoraggio"
+    }
+  ],
+  "pacchetti": [
+    {
+      "id": "starter",
+      "nome": "Starter",
+      "sottotitolo": "Ideale per piccole abitazioni",
+      "configurazione": "trinasolar-10",
+      "accessoriInclusi": [],
+      "popolare": false,
+      "features": [
+        "10 pannelli Trinasolar 455W",
+        "Inverter monofase",
+        "Produzione ~5.850 kWh/anno",
+        "Monitoraggio via app",
+        "Garanzia 25 anni"
+      ]
+    },
+    {
+      "id": "family",
+      "nome": "Family",
+      "sottotitolo": "Il più scelto dalle famiglie",
+      "configurazione": "trinasolar-14",
+      "accessoriInclusi": ["ottimizzatori"],
+      "popolare": true,
+      "features": [
+        "14 pannelli Trinasolar 455W",
+        "Inverter ibrido predisposto",
+        "Produzione ~8.190 kWh/anno",
+        "Ottimizzatori inclusi",
+        "Assistenza prioritaria"
+      ]
+    },
+    {
+      "id": "premium",
+      "nome": "Premium",
+      "sottotitolo": "Massima indipendenza energetica",
+      "configurazione": "canadian-18",
+      "accessoriInclusi": ["batteria-10", "ottimizzatori"],
+      "popolare": false,
+      "features": [
+        "18 pannelli Canadian Solar 460W",
+        "Batteria accumulo 10 kWh",
+        "Produzione ~10.660 kWh/anno",
+        "Backup in caso di blackout",
+        "Colonnina EV predisposta"
+      ]
+    }
+  ],
+  "costiExtra": {
+    "installazione": 0,
+    "pratiche": 0,
+    "iva": 10
+  },
+  "detrazioneFiscale": 50,
+  "prezzoKwhMedio": 0.25
+}

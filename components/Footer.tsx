@@ -1,21 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="bg-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold">
-                Solar<span className="text-secondary">Pro</span>
-              </span>
+          <div>
+            <Link href="/" className="inline-block mb-6">
+              <Image
+                src="/images/logo.png"
+                alt="Nexevo"
+                width={140}
+                height={40}
+                className="h-10 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Il tuo partner di fiducia per il fotovoltaico. Qualità, convenienza e assistenza garantita.
@@ -25,7 +25,7 @@ export default function Footer() {
                 <a
                   key={social}
                   href="#"
-                  className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-secondary transition-colors"
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors"
                 >
                   {social === "facebook" && (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -47,35 +47,34 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Solutions */}
+          {/* Menu principale */}
           <div>
-            <h4 className="font-semibold text-lg mb-6">Soluzioni</h4>
+            <h4 className="font-semibold text-lg mb-6">Menu</h4>
             <ul className="space-y-4">
-              {["Fotovoltaico residenziale", "Batterie di accumulo", "Pompe di calore", "Colonnine EV"].map((item) => (
-                <li key={item}>
-                  <Link href="#soluzioni" className="text-gray-400 hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="#chi-siamo" className="text-gray-400 hover:text-white transition-colors">
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link href="#vantaggi" className="text-gray-400 hover:text-white transition-colors">
+                  Perché noi
+                </Link>
+              </li>
+              <li>
+                <Link href="#prezzi" className="text-gray-400 hover:text-white transition-colors">
+                  Soluzioni
+                </Link>
+              </li>
+              <li>
+                <Link href="#recensioni" className="text-gray-400 hover:text-white transition-colors">
+                  Dicono di noi
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="font-semibold text-lg mb-6">Azienda</h4>
-            <ul className="space-y-4">
-              {["Chi siamo", "Come funziona", "Lavora con noi", "Blog"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
+          {/* Contatti */}
           <div>
             <h4 className="font-semibold text-lg mb-6">Contatti</h4>
             <ul className="space-y-4">
@@ -89,7 +88,7 @@ export default function Footer() {
                 <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>info@solarpro.it</span>
+                <span>info@nexevo.it</span>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <svg className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,16 +104,16 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            © 2024 SolarPro. Tutti i diritti riservati.
+            © 2024 Nexevo. Tutti i diritti riservati.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/cookie" className="text-gray-400 hover:text-white transition-colors">
               Cookie Policy
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/termini" className="text-gray-400 hover:text-white transition-colors">
               Termini
             </Link>
           </div>

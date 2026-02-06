@@ -1,45 +1,48 @@
 @import "tailwindcss";
 
-/* Otovo-inspired color palette */
+/* Professional color palette */
 :root {
-  --color-primary: #1e3a8a;
-  --color-primary-light: #3b82f6;
-  --color-secondary: #f97316;
-  --color-secondary-light: #fed7aa;
-  --color-dark: #1e1b4b;
-  --color-success: #10b981;
+  --color-primary: #0f3460;
+  --color-primary-light: #1e5082;
+  --color-secondary: #e85d04;
+  --color-secondary-light: #fcd5ce;
+  --color-dark: #0a1628;
+  --color-success: #059669;
   --color-bg-light: #f8fafc;
   --color-bg-cream: #fffbeb;
 }
 
 /* Primary utilities */
-.text-primary { color: #1e3a8a; }
-.bg-primary { background-color: #1e3a8a; }
-.hover\:bg-primary:hover { background-color: #1e3a8a; }
-.border-primary { border-color: #1e3a8a; }
-.ring-primary { --tw-ring-color: #1e3a8a; }
-.focus\:ring-primary:focus { --tw-ring-color: #1e3a8a; }
+.text-primary { color: #0f3460; }
+.bg-primary { background-color: #0f3460; }
+.hover\:bg-primary:hover { background-color: #0f3460; }
+.border-primary { border-color: #0f3460; }
+.ring-primary { --tw-ring-color: #0f3460; }
+.focus\:ring-primary:focus { --tw-ring-color: #0f3460; }
+.focus\:border-primary:focus { border-color: #0f3460; }
 
 /* Primary light */
-.text-primary-light { color: #3b82f6; }
-.bg-primary-light { background-color: #3b82f6; }
+.text-primary-light { color: #1e5082; }
+.bg-primary-light { background-color: #1e5082; }
+.hover\:text-primary-light:hover { color: #1e5082; }
 
 /* Secondary (orange) utilities */
-.text-secondary { color: #f97316; }
-.bg-secondary { background-color: #f97316; }
-.hover\:bg-secondary:hover { background-color: #f97316; }
-.border-secondary { border-color: #f97316; }
+.text-secondary { color: #e85d04; }
+.bg-secondary { background-color: #e85d04; }
+.hover\:bg-secondary:hover { background-color: #e85d04; }
+.hover\:bg-secondary\/90:hover { background-color: rgba(232, 93, 4, 0.9); }
+.border-secondary { border-color: #e85d04; }
 
 /* Secondary light */
-.bg-secondary-light { background-color: #fed7aa; }
+.bg-secondary-light { background-color: #fcd5ce; }
 
 /* Dark utilities */
-.text-dark { color: #1e1b4b; }
-.bg-dark { background-color: #1e1b4b; }
+.text-dark { color: #0a1628; }
+.bg-dark { background-color: #0a1628; }
 
 /* Success utilities */
-.text-success { color: #10b981; }
-.bg-success { background-color: #10b981; }
+.text-success { color: #059669; }
+.bg-success { background-color: #059669; }
 
 /* Background utilities */
 .bg-light { background-color: #f8fafc; }
@@ -47,37 +50,35 @@
 
 /* Gradient utilities */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #0f3460 0%, #1e5082 100%);
 }
 .bg-gradient-secondary {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, #e85d04 0%, #f48c06 100%);
 }
 
 /* Custom button styles */
 .btn-primary {
-  background-color: #1e3a8a;
+  background-color: #0f3460;
   color: white;
   padding: 0.875rem 2rem;
-  border-radius: 9999px;
+  border-radius: 0.5rem;
   font-weight: 600;
   transition: all 0.2s;
 }
 .btn-primary:hover {
-  background-color: #1e40af;
-  transform: translateY(-1px);
+  background-color: #1e5082;
 }
 
 .btn-secondary {
-  background-color: #f97316;
+  background-color: #e85d04;
   color: white;
   padding: 0.875rem 2rem;
-  border-radius: 9999px;
+  border-radius: 0.5rem;
   font-weight: 600;
   transition: all 0.2s;
 }
 .btn-secondary:hover {
-  background-color: #ea580c;
-  transform: translateY(-1px);
+  background-color: #d45a04;
 }
 
 /* Base styles */

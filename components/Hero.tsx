@@ -1,16 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import AddressAutocomplete, { type AddressResult } from "./AddressAutocomplete";
 
 export default function Hero() {
-  const [address, setAddress] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const leadForm = document.getElementById("preventivo");
-    if (leadForm) {
-      leadForm.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleAddressSelect = (address: AddressResult) => {
+    // Navigate to preventivo page with address data
+    const params = new URLSearchParams({
+      address: address.display_name,
+      lat: address.lat,
+      lon: address.lon
+    });
+    router.push(`/preventivo?${params.toString()}`);
   };
 
   return (
@@ -53,28 +56,17 @@ export default function Hero() {
           </p>
 
           {/* Search Form */}
-          <form onSubmit={handleSubmit} className="mb-8">
+          <div className="mb-8">
             <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-1 relative">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Inserisci il tuo indirizzo"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-primary focus:outline-none text-dark text-lg shadow-sm"
-                />
-              </div>
-              <button type="submit" className="btn-secondary whitespace-nowrap text-lg px-8">
-                Calcola risparmio
-              </button>
+              <AddressAutocomplete
+                onSelect={handleAddressSelect}
+                placeholder="Inserisci il tuo indirizzo"
+              />
             </div>
-          </form>
+            <p className="text-sm text-gray-500 mt-2">
+              Seleziona il tuo indirizzo per ricevere un <span className="font-medium text-primary">preventivo stimato gratuito</span>
+            </p>
+          </div>
 
           {/* Trust Indicators */}
           <div className="flex flex-wrap items-center gap-6 text-sm">
@@ -86,7 +78,7 @@ export default function Hero() {
               </div>
               <span className="text-gray-600">+10.000 clienti</span>
             </div>
-            <div className="flex items-center gap-2">
+            <a href="#recensioni" className="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer">
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -95,22 +87,22 @@ export default function Hero() {
                 ))}
               </div>
               <span className="text-gray-600">4.8/5 Trustpilot</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Floating Stats Card */}
-      <div className="hidden lg:block absolute bottom-20 right-20 bg-white rounded-3xl shadow-2xl p-6 max-w-xs z-20">
+      <div className="hidden lg:block absolute bottom-20 right-20 bg-white rounded-lg shadow-2xl p-6 max-w-xs z-20">
         <div className="flex items-center gap-4 mb-4">
-          <div className="w-14 h-14 bg-success/10 rounded-2xl flex items-center justify-center">
+          <div className="w-14 h-14 bg-success/10 rounded-lg flex items-center justify-center">
             <svg className="w-7 h-7 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
           </div>
           <div>
             <p className="text-sm text-gray-500">Risparmio medio annuo</p>
-            <p className="text-2xl font-bold text-dark">€1.200</p>
+            <p className="text-2xl font-bold text-dark">€2.200</p>
           </div>
         </div>
         <div className="flex items-center gap-2 text-sm text-gray-500">
