@@ -138,8 +138,19 @@ function PreventivoContent() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex flex-col">
-        <nav className="flex w-full items-center bg-white px-6 shadow-sm md:px-8 py-4">
+      <div className="min-h-screen flex flex-col relative">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2000&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-white/85" />
+        </div>
+        <nav className="relative z-10 flex w-full items-center bg-white/80 backdrop-blur-sm px-6 shadow-sm md:px-8 py-4">
           <div className="flex-1 text-center">
             <Link href="/" className="inline-block">
               <Image
@@ -147,16 +158,16 @@ function PreventivoContent() {
                 alt="Nexevo"
                 width={120}
                 height={35}
-                className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(50%)_saturate(1000%)_hue-rotate(180deg)_brightness(90%)_contrast(95%)]"
+                className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(30%)_sepia(50%)_saturate(500%)_hue-rotate(70deg)_brightness(80%)]"
               />
             </Link>
           </div>
         </nav>
 
-        <main className="flex-1 flex items-center justify-center">
+        <main className="relative z-10 flex-1 flex items-center justify-center">
           <div className="max-w-xl mx-auto px-4 pt-10 text-center">
             <div className="mb-8">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-yellow-300 to-orange-400 rounded-full flex items-center justify-center animate-pulse">
+              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#B3FE85] to-[#9FE870] rounded-full flex items-center justify-center animate-pulse">
                 <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -172,7 +183,7 @@ function PreventivoContent() {
                   }`}
                 >
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    index <= currentStep ? "bg-primary" : "bg-gray-200"
+                    index <= currentStep ? "bg-black" : "bg-gray-200"
                   }`}>
                     {index < currentStep ? (
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -190,7 +201,7 @@ function PreventivoContent() {
             </ul>
 
             <div className="mt-10">
-              <svg className="w-12 h-12 mx-auto text-secondary animate-spin" viewBox="0 0 24 24">
+              <svg className="w-12 h-12 mx-auto text-[#B3FE85] animate-spin" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
@@ -202,23 +213,32 @@ function PreventivoContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex flex-col">
-      <nav className="flex w-full items-center justify-between bg-white px-6 border-b border-gray-200 md:px-8 py-4">
+    <div className="min-h-screen bg-[#B3FE85]/[0.04] flex flex-col relative">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 z-0 opacity-[0.035]"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2000&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <nav className="relative z-10 flex w-full items-center justify-between bg-white/90 backdrop-blur-sm px-6 border-b border-gray-200 md:px-8 py-4">
         <Link href="/" className="inline-block">
           <Image
             src="/images/logo.png"
             alt="Nexevo"
             width={120}
             height={35}
-            className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(50%)_saturate(1000%)_hue-rotate(180deg)_brightness(90%)_contrast(95%)]"
+            className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(30%)_sepia(50%)_saturate(500%)_hue-rotate(70deg)_brightness(80%)]"
           />
         </Link>
       </nav>
 
-      <main className="flex-1 py-4 md:py-8 px-3 md:px-4">
+      <main className="relative z-10 flex-1 py-4 md:py-8 px-3 md:px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-6">
-            <span className="inline-block bg-amber-100 text-amber-700 font-medium text-xs md:text-sm uppercase tracking-wide px-3 py-1 md:px-4 md:py-1.5 rounded mb-2 md:mb-3">
+            <span className="inline-block bg-[#B3FE85]/15 text-black font-medium text-xs md:text-sm uppercase tracking-wide px-3 py-1 md:px-4 md:py-1.5 rounded mb-2 md:mb-3">
               Configura il tuo impianto
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3">
@@ -226,11 +246,11 @@ function PreventivoContent() {
             </h1>
             {address && (
               <p className="text-sm md:text-base flex items-center justify-center gap-1.5 md:gap-2 px-2 text-gray-500">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-[#B3FE85] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded">{address}</span>
+                <span className="font-medium text-black bg-[#B3FE85]/10 px-2 py-0.5 rounded">{address}</span>
               </p>
             )}
           </div>
@@ -241,7 +261,7 @@ function PreventivoContent() {
                 {/* Selezione Marca */}
                 <div className="bg-white rounded-lg border border-gray-200 p-5">
                   <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-primary text-white rounded-full text-sm flex items-center justify-center">1</span>
+                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">1</span>
                     Scegli la marca
                   </h3>
                   <div className="space-y-3">
@@ -251,7 +271,7 @@ function PreventivoContent() {
                         onClick={() => setConfig(prev => ({ ...prev, marcaId: marca.id }))}
                         className={`w-full text-left p-4 rounded-lg border-2 transition-all cursor-pointer ${
                           config.marcaId === marca.id
-                            ? "border-primary bg-primary/5"
+                            ? "border-[#4CAF50] bg-[#B3FE85]/10"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
@@ -261,7 +281,7 @@ function PreventivoContent() {
                             <p className="text-sm text-gray-500">{marca.modello}</p>
                           </div>
                           <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            config.marcaId === marca.id ? "border-primary bg-primary" : "border-gray-300"
+                            config.marcaId === marca.id ? "border-[#2E7D32] bg-[#2E7D32]" : "border-gray-300"
                           }`}>
                             {config.marcaId === marca.id && (
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -279,7 +299,7 @@ function PreventivoContent() {
                 {/* Selezione Numero Pannelli */}
                 <div className="bg-white rounded-lg border border-gray-200 p-5">
                   <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-primary text-white rounded-full text-sm flex items-center justify-center">2</span>
+                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">2</span>
                     Numero di pannelli
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
@@ -291,13 +311,13 @@ function PreventivoContent() {
                           onClick={() => setConfig(prev => ({ ...prev, numeroPannelli: num }))}
                           className={`p-4 rounded-lg border-2 transition-all text-center cursor-pointer ${
                             config.numeroPannelli === num
-                              ? "border-primary bg-primary/5"
+                              ? "border-[#4CAF50] bg-[#B3FE85]/10"
                               : "border-gray-200 hover:border-gray-300"
                           }`}
                         >
                           <p className="text-2xl font-bold text-gray-900">{num}</p>
                           <p className="text-xs text-gray-500">pannelli</p>
-                          <p className="text-sm font-semibold text-primary mt-1">{conf?.potenzaKw} kW</p>
+                          <p className="text-sm font-semibold text-black mt-1">{conf?.potenzaKw} kW</p>
                         </button>
                       );
                     })}
@@ -314,19 +334,19 @@ function PreventivoContent() {
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-primary/5 rounded-lg p-3 text-center">
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Marca</p>
                     <p className="font-semibold text-gray-900">{marcaCorrente?.nome}</p>
                   </div>
-                  <div className="bg-primary/5 rounded-lg p-3 text-center">
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Pannelli</p>
                     <p className="font-semibold text-gray-900">{config.numeroPannelli}x {marcaCorrente?.potenzaPannello}W</p>
                   </div>
-                  <div className="bg-primary/5 rounded-lg p-3 text-center">
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Potenza</p>
                     <p className="font-semibold text-gray-900">{configCorrente?.potenzaKw} kWp</p>
                   </div>
-                  <div className="bg-primary/5 rounded-lg p-3 text-center">
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Produzione</p>
                     <p className="font-semibold text-gray-900">~{configCorrente?.produzioneAnnua.toLocaleString("it-IT")} kWh/anno</p>
                   </div>
@@ -346,7 +366,7 @@ function PreventivoContent() {
                     { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "Garanzia 25 anni" },
                     { icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", title: "Monitoraggio app" }
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-2 p-3 bg-primary rounded-lg">
+                    <div key={index} className="flex items-center gap-2 p-3 bg-[#2E7D32] rounded-lg">
                       <svg className="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
                       </svg>
@@ -357,22 +377,22 @@ function PreventivoContent() {
               </div>
 
               {/* Risparmio stimato */}
-              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-4">
+              <div className="bg-[#B3FE85]/10 border border-[#B3FE85]/25 rounded-lg p-4 mb-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                      <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-12 h-12 bg-[#B3FE85]/20 rounded-lg flex items-center justify-center">
+                      <svg className="w-6 h-6 text-[#4CAF50]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-emerald-800">Risparmio stimato in bolletta</p>
-                      <p className="text-emerald-600 text-sm">Basato su {configCorrente?.produzioneAnnua.toLocaleString("it-IT")} kWh/anno</p>
+                      <p className="font-medium text-gray-900">Risparmio stimato in bolletta</p>
+                      <p className="text-gray-600 text-sm">Basato su {configCorrente?.produzioneAnnua.toLocaleString("it-IT")} kWh/anno</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-3xl font-bold text-emerald-700">€{calcolaRisparmioAnnuo().toLocaleString("it-IT")}</p>
-                    <p className="text-emerald-600 text-sm">/anno</p>
+                    <p className="text-3xl font-bold text-[#4CAF50]">€{calcolaRisparmioAnnuo().toLocaleString("it-IT")}</p>
+                    <p className="text-gray-600 text-sm">/anno</p>
                   </div>
                 </div>
               </div>
@@ -384,7 +404,7 @@ function PreventivoContent() {
                     onClick={() => setSelectedPlan("acquisto")}
                     className={`flex-1 py-3 px-4 text-center font-medium transition-all text-sm cursor-pointer ${
                       selectedPlan === "acquisto"
-                        ? "bg-primary text-white"
+                        ? "bg-[#4CAF50] text-white"
                         : "bg-slate-50 text-gray-600 hover:bg-slate-100"
                     }`}
                   >
@@ -394,7 +414,7 @@ function PreventivoContent() {
                     onClick={() => setSelectedPlan("rate")}
                     className={`flex-1 py-3 px-4 text-center font-medium transition-all text-sm cursor-pointer ${
                       selectedPlan === "rate"
-                        ? "bg-secondary text-white"
+                        ? "bg-[#B3FE85] text-black"
                         : "bg-slate-50 text-gray-600 hover:bg-slate-100"
                     }`}
                   >
@@ -424,7 +444,7 @@ function PreventivoContent() {
                       <div className="bg-slate-50 border border-slate-100 rounded-lg p-4">
                         <div className="flex items-center justify-between">
                           <span className="text-gray-700">Costo effettivo netto</span>
-                          <span className="text-2xl font-bold text-primary">€{prezzoNetto.toLocaleString("it-IT")}</span>
+                          <span className="text-2xl font-bold text-black">€{prezzoNetto.toLocaleString("it-IT")}</span>
                         </div>
                       </div>
                     </div>
@@ -474,7 +494,7 @@ function PreventivoContent() {
                 <div className="px-5 pb-5">
                   <button
                     onClick={() => setShowContactForm(true)}
-                    className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold py-3.5 rounded-lg transition-colors cursor-pointer"
+                    className="w-full bg-[#B3FE85] hover:bg-[#9FE870] text-black font-semibold py-3.5 rounded-lg transition-colors cursor-pointer"
                   >
                     Richiedi una consulenza gratuita
                   </button>
@@ -519,28 +539,28 @@ function PreventivoContent() {
               <p className="font-medium text-slate-800">
                 {marcaCorrente?.nome} - {config.numeroPannelli} pannelli ({configCorrente?.potenzaKw} kW)
               </p>
-              <p className="text-lg font-bold text-primary mt-1">€{prezzoTotale.toLocaleString("it-IT")}</p>
+              <p className="text-lg font-bold text-black mt-1">€{prezzoTotale.toLocaleString("it-IT")}</p>
             </div>
 
             <form className="space-y-3">
               <input
                 type="text"
                 placeholder="Nome e Cognome"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-black focus:ring-1 focus:ring-primary focus:outline-none text-sm"
               />
               <input
                 type="tel"
                 placeholder="Numero di telefono"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-black focus:ring-1 focus:ring-primary focus:outline-none text-sm"
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-black focus:ring-1 focus:ring-primary focus:outline-none text-sm"
               />
               <button
                 type="submit"
-                className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
+                className="w-full bg-[#B3FE85] hover:bg-[#9FE870] text-black font-semibold py-3 rounded-lg transition-colors cursor-pointer"
               >
                 Invia richiesta
               </button>
@@ -562,7 +582,7 @@ export default function PreventivoPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full"></div>
+        <div className="animate-spin w-12 h-12 border-4 border-black border-t-transparent rounded-full"></div>
       </div>
     }>
       <PreventivoContent />

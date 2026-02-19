@@ -113,7 +113,7 @@ export default function AddressAutocomplete({ onSelect, placeholder = "Inserisci
         value={query}
         onChange={handleInputChange}
         onFocus={() => results.length > 0 && setShowDropdown(true)}
-        className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-primary focus:outline-none text-dark text-lg shadow-sm"
+        className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-[#B3FE85] focus:outline-none text-dark text-lg shadow-sm"
       />
 
       {showDropdown && results.length > 0 && (
@@ -125,7 +125,7 @@ export default function AddressAutocomplete({ onSelect, placeholder = "Inserisci
               className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 text-dark"
             >
               <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#B3FE85] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>

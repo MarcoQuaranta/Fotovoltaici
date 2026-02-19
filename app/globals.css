@@ -1,64 +1,65 @@
 @import "tailwindcss";
 
-/* Professional color palette */
+/* Color palette: bianco, nero, #B3FE85, #6C757D */
 :root {
-  --color-primary: #0f3460;
-  --color-primary-light: #1e5082;
-  --color-secondary: #e85d04;
-  --color-secondary-light: #fcd5ce;
-  --color-dark: #0a1628;
-  --color-success: #059669;
-  --color-bg-light: #f8fafc;
-  --color-bg-cream: #fffbeb;
+  --color-primary: #000000;
+  --color-primary-light: #1a1a1a;
+  --color-secondary: #B3FE85;
+  --color-secondary-light: rgba(179, 254, 133, 0.15);
+  --color-dark: #000000;
+  --color-success: #B3FE85;
+  --color-bg-light: #f8f9fa;
+  --color-bg-cream: #f5f5f5;
+  --color-gray: #6C757D;
 }
 
 /* Primary utilities */
-.text-primary { color: #0f3460; }
-.bg-primary { background-color: #0f3460; }
-.hover\:bg-primary:hover { background-color: #0f3460; }
-.border-primary { border-color: #0f3460; }
-.ring-primary { --tw-ring-color: #0f3460; }
-.focus\:ring-primary:focus { --tw-ring-color: #0f3460; }
-.focus\:border-primary:focus { border-color: #0f3460; }
+.text-primary { color: #000000; }
+.bg-primary { background-color: #000000; }
+.hover\:bg-primary:hover { background-color: #000000; }
+.border-primary { border-color: #000000; }
+.ring-primary { --tw-ring-color: #000000; }
+.focus\:ring-primary:focus { --tw-ring-color: #000000; }
+.focus\:border-primary:focus { border-color: #000000; }
 
 /* Primary light */
-.text-primary-light { color: #1e5082; }
-.bg-primary-light { background-color: #1e5082; }
-.hover\:text-primary-light:hover { color: #1e5082; }
+.text-primary-light { color: #1a1a1a; }
+.bg-primary-light { background-color: #1a1a1a; }
+.hover\:text-primary-light:hover { color: #1a1a1a; }
 
-/* Secondary (orange) utilities */
-.text-secondary { color: #e85d04; }
-.bg-secondary { background-color: #e85d04; }
-.hover\:bg-secondary:hover { background-color: #e85d04; }
-.hover\:bg-secondary\/90:hover { background-color: rgba(232, 93, 4, 0.9); }
-.border-secondary { border-color: #e85d04; }
+/* Secondary (green accent) utilities */
+.text-secondary { color: #B3FE85; }
+.bg-secondary { background-color: #B3FE85; }
+.hover\:bg-secondary:hover { background-color: #B3FE85; }
+.hover\:bg-secondary\/90:hover { background-color: rgba(179, 254, 133, 0.9); }
+.border-secondary { border-color: #B3FE85; }
 
 /* Secondary light */
-.bg-secondary-light { background-color: #fcd5ce; }
+.bg-secondary-light { background-color: rgba(179, 254, 133, 0.15); }
 
 /* Dark utilities */
-.text-dark { color: #0a1628; }
-.bg-dark { background-color: #0a1628; }
+.text-dark { color: #000000; }
+.bg-dark { background-color: #000000; }
 
 /* Success utilities */
-.text-success { color: #059669; }
-.bg-success { background-color: #059669; }
+.text-success { color: #B3FE85; }
+.bg-success { background-color: #B3FE85; }
 
 /* Background utilities */
-.bg-light { background-color: #f8fafc; }
-.bg-cream { background-color: #fffbeb; }
+.bg-light { background-color: #f8f9fa; }
+.bg-cream { background-color: #f5f5f5; }
 
 /* Gradient utilities */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0f3460 0%, #1e5082 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
 }
 .bg-gradient-secondary {
-  background: linear-gradient(135deg, #e85d04 0%, #f48c06 100%);
+  background: linear-gradient(135deg, #B3FE85 0%, #9FE870 100%);
 }
 
 /* Custom button styles */
 .btn-primary {
-  background-color: #0f3460;
+  background-color: #000000;
   color: white;
   padding: 0.875rem 2rem;
   border-radius: 0.5rem;
@@ -66,19 +67,19 @@
   transition: all 0.2s;
 }
 .btn-primary:hover {
-  background-color: #1e5082;
+  background-color: #1a1a1a;
 }
 
 .btn-secondary {
-  background-color: #e85d04;
-  color: white;
+  background-color: #B3FE85;
+  color: #000000;
   padding: 0.875rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
   transition: all 0.2s;
 }
 .btn-secondary:hover {
-  background-color: #d45a04;
+  background-color: #9FE870;
 }
 
 /* Base styles */
@@ -88,6 +89,50 @@ html {
 
 body {
   background: #ffffff;
-  color: #1e1b4b;
+  color: #000000;
   font-family: 'Poppins', sans-serif;
+}
+
+/* Pulse glow for active carousel card */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(179, 254, 133, 0.15), 0 0 60px rgba(179, 254, 133, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(179, 254, 133, 0.25), 0 0 80px rgba(179, 254, 133, 0.1);
+  }
+}
+
+.pulse-glow-shadow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Starfield — lightweight CSS-only dots */
+.stars-field {
+  background-image:
+    radial-gradient(3px 3px at 12% 18%, rgba(179,254,133,0.6) 40%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 73% 8%, rgba(255,255,255,0.55) 40%, transparent 70%),
+    radial-gradient(4px 4px at 45% 42%, rgba(179,254,133,0.5) 30%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 88% 35%, rgba(255,255,255,0.5) 40%, transparent 70%),
+    radial-gradient(3px 3px at 28% 65%, rgba(179,254,133,0.55) 40%, transparent 70%),
+    radial-gradient(3.5px 3.5px at 92% 72%, rgba(179,254,133,0.45) 30%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 5% 85%, rgba(255,255,255,0.5) 40%, transparent 70%),
+    radial-gradient(3px 3px at 60% 88%, rgba(179,254,133,0.5) 40%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 35% 12%, rgba(255,255,255,0.45) 40%, transparent 70%),
+    radial-gradient(3px 3px at 78% 55%, rgba(179,254,133,0.4) 40%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 18% 45%, rgba(255,255,255,0.45) 40%, transparent 70%),
+    radial-gradient(4px 4px at 55% 25%, rgba(179,254,133,0.45) 30%, transparent 70%),
+    radial-gradient(3px 3px at 42% 78%, rgba(179,254,133,0.5) 40%, transparent 70%),
+    radial-gradient(2.5px 2.5px at 95% 15%, rgba(255,255,255,0.5) 40%, transparent 70%),
+    radial-gradient(3px 3px at 8% 52%, rgba(179,254,133,0.45) 40%, transparent 70%);
+}
+
+/* Neon text glow */
+.neon-text-glow {
+  text-shadow: 0 0 8px rgba(179, 254, 133, 0.6), 0 0 20px rgba(179, 254, 133, 0.3);
+}
+
+/* Neon box glow (icons) */
+.neon-box-glow {
+  box-shadow: 0 0 10px rgba(179, 254, 133, 0.2), 0 0 25px rgba(179, 254, 133, 0.08);
 }

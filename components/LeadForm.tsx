@@ -28,18 +28,18 @@ export default function LeadForm() {
 
   if (isSubmitted) {
     return (
-      <section id="preventivo" className="py-20 lg:py-28 bg-primary">
+      <section id="preventivo" className="py-20 lg:py-28 bg-black">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-white rounded-lg p-8 lg:p-12 shadow-2xl">
-            <div className="w-20 h-20 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-10 h-10 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-20 h-20 bg-[#B3FE85]/15 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-[#B3FE85]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <h3 className="text-2xl lg:text-3xl font-bold text-dark mb-4">
               Richiesta ricevuta!
             </h3>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-[#6C757D] mb-8">
               Grazie {formData.nome}! Verrai ricontattato da un nostro esperto entro 24 ore per ricevere un preventivo gratuito e personalizzato.
             </p>
             <button
@@ -47,7 +47,7 @@ export default function LeadForm() {
                 setIsSubmitted(false);
                 setFormData({ nome: "", telefono: "", email: "" });
               }}
-              className="text-primary font-semibold hover:underline cursor-pointer"
+              className="text-black font-semibold hover:underline cursor-pointer"
             >
               Invia una nuova richiesta
             </button>
@@ -58,7 +58,7 @@ export default function LeadForm() {
   }
 
   return (
-    <section id="preventivo" className="py-20 lg:py-28 bg-primary relative overflow-hidden">
+    <section id="preventivo" className="py-20 lg:py-28 bg-[#0a0a0a] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
         <svg className="w-full h-full" viewBox="0 0 400 400" fill="none">
@@ -74,7 +74,7 @@ export default function LeadForm() {
               Consulenza gratuita
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Calcola il tuo risparmio
+              Calcola il tuo <span className="text-[#B3FE85]">risparmio</span>
             </h2>
             <p className="text-lg text-white/90 mb-8 leading-relaxed">
               Compila il modulo per ottenere una stima personalizzata.
@@ -89,8 +89,8 @@ export default function LeadForm() {
                 "Possibilità di finanziamento a tasso zero"
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-6 h-6 bg-[#B3FE85]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-[#B3FE85]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -105,7 +105,7 @@ export default function LeadForm() {
             <h3 className="text-xl font-semibold text-dark mb-1">
               Parla con un nostro esperto
             </h3>
-            <p className="text-gray-500 text-sm mb-6">
+            <p className="text-[#6C757D] text-sm mb-6">
               Ti ricontatteremo per individuare la soluzione ideale per te.
             </p>
 
@@ -118,7 +118,7 @@ export default function LeadForm() {
                   required
                   value={formData.nome}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#B3FE85] focus:ring-1 focus:ring-[#B3FE85] focus:outline-none transition-colors"
                   placeholder="Nome e Cognome"
                 />
               </div>
@@ -131,7 +131,7 @@ export default function LeadForm() {
                   required
                   value={formData.telefono}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#B3FE85] focus:ring-1 focus:ring-[#B3FE85] focus:outline-none transition-colors"
                   placeholder="Numero di telefono"
                 />
               </div>
@@ -144,7 +144,7 @@ export default function LeadForm() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#B3FE85] focus:ring-1 focus:ring-[#B3FE85] focus:outline-none transition-colors"
                   placeholder="Email"
                 />
               </div>
@@ -167,7 +167,7 @@ export default function LeadForm() {
                 )}
               </button>
 
-              <p className="text-xs text-gray-400 text-center">
+              <p className="text-xs text-[#6C757D] text-center">
                 I tuoi dati sono protetti e non saranno ceduti a terzi.
               </p>
             </form>

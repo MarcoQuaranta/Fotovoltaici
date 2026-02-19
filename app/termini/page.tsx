@@ -16,7 +16,7 @@ export default function TerminiPage() {
             alt="Nexevo"
             width={120}
             height={35}
-            className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(50%)_saturate(1000%)_hue-rotate(180deg)_brightness(90%)_contrast(95%)]"
+            className="h-8 w-auto [filter:brightness(0)_saturate(100%)_invert(30%)_sepia(50%)_saturate(500%)_hue-rotate(70deg)_brightness(80%)]"
           />
         </Link>
         <Link href="/" className="text-primary hover:underline text-sm">

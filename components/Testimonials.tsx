@@ -27,16 +27,16 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="recensioni" className="py-20 lg:py-28 bg-white">
+    <section id="recensioni" className="py-20 lg:py-28 bg-[#FFFDF5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="inline-block text-[#6C757D] font-semibold text-sm uppercase tracking-wider mb-4">
             Opinioni reali
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-6">
             Le esperienze di chi ci ha scelto
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-[#6C757D] max-w-2xl mx-auto">
             Più di 10.000 famiglie hanno deciso di affidarsi a noi. Scopri le loro testimonianze.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-[#6C757D] mb-6 leading-relaxed">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
 
@@ -70,7 +70,7 @@ export default function Testimonials() {
                 />
                 <div>
                   <p className="font-semibold text-dark">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location} • {testimonial.date}</p>
+                  <p className="text-sm text-[#6C757D]">{testimonial.location} • {testimonial.date}</p>
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function Testimonials() {
         {/* Trustpilot Badge */}
         <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="text-gray-600">Giudizio</span>
+            <span className="text-[#6C757D]">Giudizio</span>
             <span className="text-2xl font-bold text-dark">Eccellente</span>
           </div>
           <div className="flex items-center gap-2">
@@ -93,7 +93,7 @@ export default function Testimonials() {
             </div>
             <span className="text-lg font-semibold text-dark">4.8 su 5</span>
           </div>
-          <div className="text-gray-500">
+          <div className="text-[#6C757D]">
             Calcolato su <span className="font-medium text-dark">2.847 recensioni</span> Trustpilot
           </div>
         </div>

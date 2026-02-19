@@ -16,16 +16,25 @@ export default function Packages() {
   const marcaCanadian = offerte.marche.find(m => m.id === "canadian");
 
   return (
-    <section id="prezzi" className="py-20 lg:py-28 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="prezzi" className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="inline-block text-[#6C757D] font-semibold text-sm uppercase tracking-wider mb-4">
             Le nostre proposte
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-6">
             Trova l'impianto giusto per te
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-[#6C757D] max-w-2xl mx-auto">
             Tecnologia di qualità, installazione completa e 25 anni di garanzia su ogni soluzione.
           </p>
         </div>
@@ -45,15 +54,15 @@ export default function Packages() {
             <div className="p-6">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold text-dark mb-1">{marcaTrinasolar?.nome}</h3>
-                <p className="text-gray-500 text-sm">{marcaTrinasolar?.modello}</p>
+                <p className="text-[#6C757D] text-sm">{marcaTrinasolar?.modello}</p>
               </div>
 
               <div className="mb-5">
-                <p className="text-sm text-gray-500 mb-1">A partire da</p>
+                <p className="text-sm text-[#6C757D] mb-1">A partire da</p>
                 <p className="text-3xl font-bold text-dark">
                   €{prezzoMinTrinasolar.toLocaleString("it-IT")}
                 </p>
-                <p className="text-sm text-gray-500">IVA e installazione incluse</p>
+                <p className="text-sm text-[#6C757D]">IVA e installazione incluse</p>
               </div>
 
               <ul className="space-y-2.5 mb-6">
@@ -64,17 +73,17 @@ export default function Packages() {
                   "Controllo remoto tramite app"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-[#B3FE85] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600 text-sm">{feature}</span>
+                    <span className="text-[#6C757D] text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 href="/preventivo?marca=trinasolar"
-                className="block w-full py-3 rounded-lg font-semibold text-center transition-all bg-gray-100 text-dark hover:bg-primary hover:text-white cursor-pointer"
+                className="block w-full py-3 rounded-lg font-semibold text-center transition-all bg-gray-100 text-dark hover:bg-black hover:text-white cursor-pointer"
               >
                 Configura
               </Link>
@@ -82,9 +91,9 @@ export default function Packages() {
           </div>
 
           {/* Canadian Solar */}
-          <div className="relative rounded-lg overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 ring-2 ring-secondary md:scale-105 md:-my-4 z-10">
+          <div className="relative rounded-lg overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 ring-2 ring-[#B3FE85] md:scale-105 md:-my-4 z-10">
             <div className="absolute top-4 right-4 z-10">
-              <span className="bg-secondary text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
+              <span className="bg-[#B3FE85] text-black text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
                 Consigliato
               </span>
             </div>
@@ -101,15 +110,15 @@ export default function Packages() {
             <div className="p-6">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold text-dark mb-1">{marcaCanadian?.nome}</h3>
-                <p className="text-gray-500 text-sm">{marcaCanadian?.modello}</p>
+                <p className="text-[#6C757D] text-sm">{marcaCanadian?.modello}</p>
               </div>
 
               <div className="mb-5">
-                <p className="text-sm text-gray-500 mb-1">A partire da</p>
+                <p className="text-sm text-[#6C757D] mb-1">A partire da</p>
                 <p className="text-3xl font-bold text-dark">
                   €{prezzoMinCanadian.toLocaleString("it-IT")}
                 </p>
-                <p className="text-sm text-gray-500">IVA e installazione incluse</p>
+                <p className="text-sm text-[#6C757D]">IVA e installazione incluse</p>
               </div>
 
               <ul className="space-y-2.5 mb-6">
@@ -120,10 +129,10 @@ export default function Packages() {
                   "Supporto tecnico dedicato"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-[#B3FE85] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600 text-sm">{feature}</span>
+                    <span className="text-[#6C757D] text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -151,15 +160,15 @@ export default function Packages() {
             <div className="p-6">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold text-dark mb-1">Personalizzato</h3>
-                <p className="text-gray-500 text-sm">Soluzione su misura</p>
+                <p className="text-[#6C757D] text-sm">Soluzione su misura</p>
               </div>
 
               <div className="mb-5">
-                <p className="text-sm text-gray-500 mb-1">Richiedi</p>
+                <p className="text-sm text-[#6C757D] mb-1">Richiedi</p>
                 <p className="text-xl font-bold text-dark">
                   Una proposta dedicata
                 </p>
-                <p className="text-sm text-gray-500">Senza alcun impegno</p>
+                <p className="text-sm text-[#6C757D]">Senza alcun impegno</p>
               </div>
 
               <ul className="space-y-2.5 mb-6">
@@ -170,17 +179,17 @@ export default function Packages() {
                   "Valutazione delle opzioni"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-[#B3FE85] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-600 text-sm">{feature}</span>
+                    <span className="text-[#6C757D] text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 href="#preventivo"
-                className="block w-full py-3 rounded-lg font-semibold text-center transition-all bg-primary text-white hover:bg-primary-light cursor-pointer"
+                className="block w-full py-3 rounded-lg font-semibold text-center transition-all bg-black text-white hover:bg-[#1a1a1a] cursor-pointer"
               >
                 Richiedi preventivo
               </Link>
@@ -188,7 +197,7 @@ export default function Packages() {
           </div>
         </div>
 
-        <p className="text-center text-gray-500 mt-12">
+        <p className="text-center text-[#6C757D] mt-12">
           Approfitta della detrazione fiscale al 50%. Disponibile anche il finanziamento a tasso zero.
         </p>
       </div>

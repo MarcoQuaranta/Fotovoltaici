@@ -32,7 +32,7 @@ export default function Navbar() {
               alt="Nexevo"
               width={140}
               height={40}
-              className="h-10 w-auto [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(50%)_saturate(1000%)_hue-rotate(180deg)_brightness(90%)_contrast(95%)]"
+              className="h-10 w-auto [filter:brightness(0)_saturate(100%)_invert(30%)_sepia(50%)_saturate(500%)_hue-rotate(70deg)_brightness(80%)]"
               priority
             />
           </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Link
               href="#preventivo"
-              className="btn-primary inline-block"
+              className="btn-secondary inline-block"
             >
               Richiedi consulenza
             </Link>
