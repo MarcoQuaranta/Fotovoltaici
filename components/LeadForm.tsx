@@ -152,7 +152,7 @@ export default function LeadForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-secondary py-3.5 text-base disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-full bg-[#2E7D32] hover:bg-[#256B29] text-white py-3.5 text-base font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">

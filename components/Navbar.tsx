@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Link
               href="#preventivo"
-              className="btn-secondary inline-block"
+              className="inline-block bg-[#2E7D32] hover:bg-[#256B29] text-white px-6 py-2.5 rounded-lg font-semibold transition-colors"
             >
               Richiedi consulenza
             </Link>
