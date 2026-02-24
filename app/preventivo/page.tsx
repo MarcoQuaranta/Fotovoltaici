@@ -13,6 +13,9 @@ type Configurazione = typeof offerte.configurazioni[0];
 interface ConfigState {
   marcaId: string;
   numeroPannelli: number;
+  inverterId: string;
+  inverterOpzioneId: string;
+  batteriaId: string;
   accessoriSelezionati: string[];
 }
 
@@ -38,6 +41,9 @@ function PreventivoContent() {
           return {
             marcaId: conf.marca,
             numeroPannelli: conf.numeroPannelli,
+            inverterId: "",
+            inverterOpzioneId: "",
+            batteriaId: "",
             accessoriSelezionati: [...pkg.accessoriInclusi]
           };
         }
@@ -48,6 +54,9 @@ function PreventivoContent() {
       return {
         marcaId: marcaParam,
         numeroPannelli: 10,
+        inverterId: "",
+        inverterOpzioneId: "",
+        batteriaId: "",
         accessoriSelezionati: []
       };
     }
@@ -55,6 +64,9 @@ function PreventivoContent() {
     return {
       marcaId: "trinasolar",
       numeroPannelli: 10,
+      inverterId: "",
+      inverterOpzioneId: "",
+      batteriaId: "",
       accessoriSelezionati: []
     };
   });
@@ -101,6 +113,20 @@ function PreventivoContent() {
     if (!conf) return 0;
 
     let prezzo = conf.prezzoBase;
+
+    // Aggiungi prezzo inverter
+    if (config.inverterId && config.inverterOpzioneId) {
+      const inv = offerte.inverter.find(i => i.id === config.inverterId);
+      const opz = inv?.opzioni.find(o => o.id === config.inverterOpzioneId);
+      if (opz) prezzo += opz.prezzo;
+    }
+
+    // Aggiungi prezzo batteria (opzionale)
+    if (config.batteriaId) {
+      const bat = offerte.batterie.find(b => b.id === config.batteriaId);
+      if (bat) prezzo += bat.prezzo;
+    }
+
     config.accessoriSelezionati.forEach(accId => {
       const acc = offerte.accessori.find(a => a.id === accId);
       if (acc) prezzo += acc.prezzo;
@@ -323,6 +349,79 @@ function PreventivoContent() {
                     })}
                   </div>
                 </div>
+
+                {/* Selezione Inverter (obbligatorio) */}
+                <div className="bg-white rounded-lg border border-gray-200 p-5">
+                  <h3 className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
+                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">3</span>
+                    Scegli l&apos;inverter
+                  </h3>
+                  <p className="text-xs text-gray-500 mb-4">Obbligatorio — seleziona marca e taglia</p>
+                  <div className="space-y-3">
+                    {offerte.inverter.map(inv => (
+                      <div key={inv.id}>
+                        <p className="font-medium text-gray-800 text-sm mb-2">{inv.nome}</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {inv.opzioni.map(opz => (
+                            <button
+                              key={opz.id}
+                              onClick={() => setConfig(prev => ({ ...prev, inverterId: inv.id, inverterOpzioneId: opz.id }))}
+                              className={`p-3 rounded-lg border-2 transition-all text-center cursor-pointer ${
+                                config.inverterOpzioneId === opz.id
+                                  ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                                  : "border-gray-200 hover:border-gray-300"
+                              }`}
+                            >
+                              <p className="text-sm font-semibold text-gray-900">{opz.unita} unità</p>
+                              <p className="text-sm font-bold text-black mt-1">€{opz.prezzo.toLocaleString("it-IT")}</p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Selezione Batteria (opzionale) */}
+                <div className="bg-white rounded-lg border border-gray-200 p-5">
+                  <h3 className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
+                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">4</span>
+                    Batteria di accumulo
+                  </h3>
+                  <p className="text-xs text-gray-500 mb-4">Opzionale — accumula energia per la sera</p>
+                  <div className="space-y-2">
+                    {/* Opzione nessuna batteria */}
+                    <button
+                      onClick={() => setConfig(prev => ({ ...prev, batteriaId: "" }))}
+                      className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
+                        config.batteriaId === ""
+                          ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="font-medium text-gray-800 text-sm">Nessuna batteria</p>
+                        <p className="text-sm font-semibold text-gray-500">€0</p>
+                      </div>
+                    </button>
+                    {offerte.batterie.map(bat => (
+                      <button
+                        key={bat.id}
+                        onClick={() => setConfig(prev => ({ ...prev, batteriaId: bat.id }))}
+                        className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
+                          config.batteriaId === bat.id
+                            ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                            : "border-gray-200 hover:border-gray-300"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <p className="font-medium text-gray-800 text-sm">{bat.nome}</p>
+                          <p className="text-sm font-bold text-black">€{bat.prezzo.toLocaleString("it-IT")}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
             </div>
 
             {/* Riepilogo Preventivo */}
@@ -333,7 +432,7 @@ function PreventivoContent() {
                   <h3 className="font-semibold text-gray-900">La tua configurazione</h3>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Marca</p>
                     <p className="font-semibold text-gray-900">{marcaCorrente?.nome}</p>
@@ -349,6 +448,22 @@ function PreventivoContent() {
                   <div className="bg-black/5 rounded-lg p-3 text-center">
                     <p className="text-xs text-gray-500 mb-1">Produzione</p>
                     <p className="font-semibold text-gray-900">~{configCorrente?.produzioneAnnua.toLocaleString("it-IT")} kWh/anno</p>
+                  </div>
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
+                    <p className="text-xs text-gray-500 mb-1">Inverter</p>
+                    <p className="font-semibold text-gray-900">
+                      {config.inverterId
+                        ? `${offerte.inverter.find(i => i.id === config.inverterId)?.nome} — ${offerte.inverter.find(i => i.id === config.inverterId)?.opzioni.find(o => o.id === config.inverterOpzioneId)?.unita} unità`
+                        : <span className="text-amber-600">Da selezionare</span>}
+                    </p>
+                  </div>
+                  <div className="bg-black/5 rounded-lg p-3 text-center">
+                    <p className="text-xs text-gray-500 mb-1">Batteria</p>
+                    <p className="font-semibold text-gray-900">
+                      {config.batteriaId
+                        ? offerte.batterie.find(b => b.id === config.batteriaId)?.nome
+                        : "Nessuna"}
+                    </p>
                   </div>
                 </div>
 
@@ -492,9 +607,16 @@ function PreventivoContent() {
 
                 {/* CTA Button */}
                 <div className="px-5 pb-5">
+                  {!config.inverterId && (
+                    <p className="text-amber-600 text-sm text-center mb-2">Seleziona un inverter per continuare</p>
+                  )}
                   <button
-                    onClick={() => setShowContactForm(true)}
-                    className="w-full bg-[#B3FE85] hover:bg-[#9FE870] text-black font-semibold py-3.5 rounded-lg transition-colors cursor-pointer"
+                    onClick={() => config.inverterId && setShowContactForm(true)}
+                    className={`w-full font-semibold py-3.5 rounded-lg transition-colors ${
+                      config.inverterId
+                        ? "bg-[#B3FE85] hover:bg-[#9FE870] text-[#1B5E20] cursor-pointer"
+                        : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    }`}
                   >
                     Richiedi una consulenza gratuita
                   </button>
@@ -539,6 +661,16 @@ function PreventivoContent() {
               <p className="font-medium text-slate-800">
                 {marcaCorrente?.nome} - {config.numeroPannelli} pannelli ({configCorrente?.potenzaKw} kW)
               </p>
+              {config.inverterId && (
+                <p className="text-sm text-slate-600">
+                  Inverter: {offerte.inverter.find(i => i.id === config.inverterId)?.nome} — {offerte.inverter.find(i => i.id === config.inverterId)?.opzioni.find(o => o.id === config.inverterOpzioneId)?.unita} unità
+                </p>
+              )}
+              {config.batteriaId && (
+                <p className="text-sm text-slate-600">
+                  Batteria: {offerte.batterie.find(b => b.id === config.batteriaId)?.nome}
+                </p>
+              )}
               <p className="text-lg font-bold text-black mt-1">€{prezzoTotale.toLocaleString("it-IT")}</p>
             </div>
 

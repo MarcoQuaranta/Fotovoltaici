@@ -26,13 +26,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center [filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))_drop-shadow(0_4px_12px_rgba(0,0,0,0.3))]">
             <Image
               src="/images/logo.png"
               alt="Nexevo"
               width={140}
               height={40}
-              className="h-10 w-auto [filter:brightness(0)_saturate(100%)_invert(30%)_sepia(50%)_saturate(500%)_hue-rotate(70deg)_brightness(80%)]"
+              className="h-10 w-auto [filter:brightness(0)_saturate(100%)_invert(82%)_sepia(47%)_saturate(530%)_hue-rotate(52deg)_brightness(104%)_contrast(99%)]"
               priority
             />
           </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Link
               href="#preventivo"
-              className="inline-block bg-[#2E7D32] hover:bg-[#256B29] text-white px-6 py-2.5 rounded-lg font-semibold transition-colors"
+              className="inline-block bg-[#B3FE85] hover:bg-[#9FE870] text-[#1B5E20] px-6 py-2.5 rounded-lg font-semibold transition-colors"
             >
               Richiedi consulenza
             </Link>

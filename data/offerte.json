@@ -151,6 +151,36 @@
       ]
     }
   ],
+  "inverter": [
+    {
+      "id": "deye",
+      "nome": "Deye 3kW",
+      "opzioni": [
+        { "id": "deye-3", "unita": 3, "prezzo": 2500 },
+        { "id": "deye-6", "unita": 6, "prezzo": 3500 }
+      ]
+    },
+    {
+      "id": "canadian-ep",
+      "nome": "Canadian EP Cube",
+      "opzioni": [
+        { "id": "canadian-ep-6", "unita": 6, "prezzo": 5000 }
+      ]
+    },
+    {
+      "id": "azzurro",
+      "nome": "Azzurro",
+      "opzioni": [
+        { "id": "azzurro-3", "unita": 3, "prezzo": 3000 },
+        { "id": "azzurro-6", "unita": 6, "prezzo": 4000 }
+      ]
+    }
+  ],
+  "batterie": [
+    { "id": "deye-bat", "nome": "Deye", "prezzo": 3000 },
+    { "id": "canadian-ep-bat", "nome": "Canadian EP Cube", "prezzo": 5000 },
+    { "id": "azzurro-bat", "nome": "Azzurro", "prezzo": 4500 }
+  ],
   "costiExtra": {
     "installazione": 0,
     "pratiche": 0,
