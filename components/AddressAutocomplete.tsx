@@ -113,7 +113,7 @@ export default function AddressAutocomplete({ onSelect, placeholder = "Inserisci
         value={query}
         onChange={handleInputChange}
         onFocus={() => results.length > 0 && setShowDropdown(true)}
-        className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-[#B3FE85] focus:outline-none text-dark text-lg shadow-sm"
+        className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-300 bg-gray-50 focus:border-[#4CAF50] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#B3FE85]/40 text-dark text-lg shadow-sm transition-all"
       />
 
       {showDropdown && results.length > 0 && (

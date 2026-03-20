@@ -26,7 +26,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center [filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))_drop-shadow(0_4px_12px_rgba(0,0,0,0.3))]">
+          <Link href="/" className="flex items-center [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.6))_drop-shadow(0_2px_4px_rgba(0,0,0,0.4))]">
             <Image
               src="/images/logo.png"
               alt="Nexevo"

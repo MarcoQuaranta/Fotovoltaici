@@ -34,8 +34,8 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-xl font-semibold text-dark mt-8 mb-4">1. Titolare del Trattamento</h2>
               <p>
-                Il Titolare del trattamento dei dati personali è Nexevo S.r.l., con sede legale in Via dell&apos;Energia 1, 20100 Milano (MI),
-                P.IVA 00000000000, email: privacy@nexevo.it
+                Il Titolare del trattamento dei dati personali è NEXEVO S.R.L., con sede legale in Via Aniello Falcone 394, 80127 Napoli (NA),
+                P.IVA 10924601213, email: privacy@nexevo.it
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function PrivacyPage() {
               <ul className="list-none mt-3 space-y-1">
                 <li>Email: <a href="mailto:privacy@nexevo.it" className="text-primary hover:underline">privacy@nexevo.it</a></li>
                 <li>Telefono: 800 123 456</li>
-                <li>Indirizzo: Via dell&apos;Energia 1, 20100 Milano (MI)</li>
+                <li>Indirizzo: Via Aniello Falcone 394, 80127 Napoli (NA)</li>
               </ul>
             </section>
           </div>
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
             <span className="mx-2">-</span>
             <Link href="/cookie" className="hover:text-white transition-colors">Cookie</Link>
             <span className="mx-2">-</span>
-            2026 Nexevo
+            2026 NEXEVO S.R.L. — P.IVA 10924601213
           </p>
         </div>
       </footer>

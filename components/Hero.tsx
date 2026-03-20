@@ -56,7 +56,13 @@ export default function Hero() {
           </p>
 
           {/* Search Form */}
-          <div className="mb-8">
+          <div className="mb-8 bg-white/90 backdrop-blur-sm rounded-2xl p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-200/80 ring-1 ring-[#B3FE85]/30">
+            <p className="text-sm font-semibold text-black mb-3 flex items-center gap-2">
+              <svg className="w-4 h-4 text-[#4CAF50]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              Calcola il tuo risparmio
+            </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <AddressAutocomplete
                 onSelect={handleAddressSelect}

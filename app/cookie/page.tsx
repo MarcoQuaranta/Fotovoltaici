@@ -224,7 +224,7 @@ export default function CookiePage() {
             <span className="mx-2">-</span>
             <Link href="/cookie" className="hover:text-white transition-colors">Cookie</Link>
             <span className="mx-2">-</span>
-            2026 Nexevo
+            2026 NEXEVO S.R.L. — P.IVA 10924601213
           </p>
         </div>
       </footer>

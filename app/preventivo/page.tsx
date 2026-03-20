@@ -29,6 +29,28 @@ function PreventivoContent() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPlan, setSelectedPlan] = useState<"acquisto" | "rate">("acquisto");
   const [showContactForm, setShowContactForm] = useState(false);
+  const [openSections, setOpenSections] = useState<Set<number>>(new Set([1]));
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const toggleSection = (n: number) => {
+    setOpenSections(prev => {
+      const next = new Set(prev);
+      if (next.has(n)) {
+        next.delete(n);
+      } else {
+        if (isMobile) next.clear();
+        next.add(n);
+      }
+      return next;
+    });
+  };
 
   // Stato configurazione
   const [config, setConfig] = useState<ConfigState>(() => {
@@ -239,7 +261,7 @@ function PreventivoContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#B3FE85]/[0.04] flex flex-col relative">
+    <div className="min-h-screen bg-[#B3FE85]/[0.01] flex flex-col relative">
       {/* Background image */}
       <div
         className="absolute inset-0 z-0 opacity-[0.035]"
@@ -281,151 +303,197 @@ function PreventivoContent() {
             )}
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-5">
+          <div className="grid gap-6 lg:gap-16 lg:grid-cols-3">
             {/* Configuratore */}
-            <div className="lg:col-span-2 space-y-4">
+            <div className="lg:col-span-1 space-y-5">
                 {/* Selezione Marca */}
-                <div className="bg-white rounded-lg border border-gray-200 p-5">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">1</span>
-                    Scegli la marca
-                  </h3>
-                  <div className="space-y-3">
-                    {offerte.marche.map(marca => (
-                      <button
-                        key={marca.id}
-                        onClick={() => setConfig(prev => ({ ...prev, marcaId: marca.id }))}
-                        className={`w-full text-left p-4 rounded-lg border-2 transition-all cursor-pointer ${
-                          config.marcaId === marca.id
-                            ? "border-[#4CAF50] bg-[#B3FE85]/10"
-                            : "border-gray-200 hover:border-gray-300"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-semibold text-gray-900">{marca.nome}</p>
-                            <p className="text-sm text-gray-500">{marca.modello}</p>
-                          </div>
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            config.marcaId === marca.id ? "border-[#2E7D32] bg-[#2E7D32]" : "border-gray-300"
-                          }`}>
-                            {config.marcaId === marca.id && (
-                              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                          </div>
-                        </div>
-                        <p className="text-xs text-gray-400 mt-2">{marca.descrizione}</p>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Selezione Numero Pannelli */}
-                <div className="bg-white rounded-lg border border-gray-200 p-5">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">2</span>
-                    Numero di pannelli
-                  </h3>
-                  <div className="grid grid-cols-3 gap-3">
-                    {getNumeriPannelliDisponibili().map(num => {
-                      const conf = offerte.configurazioni.find(c => c.marca === config.marcaId && c.numeroPannelli === num);
-                      return (
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(1)}
+                    className="w-full flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                      <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">1</span>
+                      Scegli la marca
+                    </h3>
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openSections.has(1) ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openSections.has(1) ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
+                    <div className="px-5 pb-5 space-y-3">
+                      {offerte.marche.map(marca => (
                         <button
-                          key={num}
-                          onClick={() => setConfig(prev => ({ ...prev, numeroPannelli: num }))}
-                          className={`p-4 rounded-lg border-2 transition-all text-center cursor-pointer ${
-                            config.numeroPannelli === num
+                          key={marca.id}
+                          onClick={() => setConfig(prev => ({ ...prev, marcaId: marca.id }))}
+                          className={`w-full text-left p-4 rounded-lg border-2 transition-all cursor-pointer ${
+                            config.marcaId === marca.id
                               ? "border-[#4CAF50] bg-[#B3FE85]/10"
                               : "border-gray-200 hover:border-gray-300"
                           }`}
                         >
-                          <p className="text-2xl font-bold text-gray-900">{num}</p>
-                          <p className="text-xs text-gray-500">pannelli</p>
-                          <p className="text-sm font-semibold text-black mt-1">{conf?.potenzaKw} kW</p>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-semibold text-gray-900">{marca.nome}</p>
+                              <p className="text-sm text-gray-500">{marca.modello}</p>
+                            </div>
+                            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                              config.marcaId === marca.id ? "border-[#2E7D32] bg-[#2E7D32]" : "border-gray-300"
+                            }`}>
+                              {config.marcaId === marca.id && (
+                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-400 mt-2">{marca.descrizione}</p>
                         </button>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Selezione Inverter (obbligatorio) */}
-                <div className="bg-white rounded-lg border border-gray-200 p-5">
-                  <h3 className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">3</span>
-                    Scegli l&apos;inverter
-                  </h3>
-                  <p className="text-xs text-gray-500 mb-4">Obbligatorio — seleziona marca e taglia</p>
-                  <div className="space-y-3">
-                    {offerte.inverter.map(inv => (
-                      <div key={inv.id}>
-                        <p className="font-medium text-gray-800 text-sm mb-2">{inv.nome}</p>
-                        <div className="grid grid-cols-2 gap-2">
-                          {inv.opzioni.map(opz => (
+                {/* Selezione Numero Pannelli */}
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(2)}
+                    className="w-full flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                      <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">2</span>
+                      Numero di pannelli
+                    </h3>
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openSections.has(2) ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openSections.has(2) ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
+                    <div className="px-5 pb-5">
+                      <div className="grid grid-cols-3 gap-3">
+                        {getNumeriPannelliDisponibili().map(num => {
+                          const conf = offerte.configurazioni.find(c => c.marca === config.marcaId && c.numeroPannelli === num);
+                          return (
                             <button
-                              key={opz.id}
-                              onClick={() => setConfig(prev => ({ ...prev, inverterId: inv.id, inverterOpzioneId: opz.id }))}
-                              className={`p-3 rounded-lg border-2 transition-all text-center cursor-pointer ${
-                                config.inverterOpzioneId === opz.id
+                              key={num}
+                              onClick={() => setConfig(prev => ({ ...prev, numeroPannelli: num }))}
+                              className={`p-4 rounded-lg border-2 transition-all text-center cursor-pointer ${
+                                config.numeroPannelli === num
                                   ? "border-[#4CAF50] bg-[#B3FE85]/10"
                                   : "border-gray-200 hover:border-gray-300"
                               }`}
                             >
-                              <p className="text-sm font-semibold text-gray-900">{opz.unita} unità</p>
-                              <p className="text-sm font-bold text-black mt-1">€{opz.prezzo.toLocaleString("it-IT")}</p>
+                              <p className="text-2xl font-bold text-gray-900">{num}</p>
+                              <p className="text-xs text-gray-500">pannelli</p>
+                              <p className="text-sm font-semibold text-black mt-1">{conf?.potenzaKw} kW</p>
                             </button>
-                          ))}
-                        </div>
+                          );
+                        })}
                       </div>
-                    ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Selezione Inverter (obbligatorio) */}
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(3)}
+                    className="w-full flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                      <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">3</span>
+                      Scegli l&apos;inverter
+                    </h3>
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openSections.has(3) ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openSections.has(3) ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
+                    <div className="px-5 pb-5">
+                      <p className="text-xs text-gray-500 mb-4">Obbligatorio — seleziona marca e taglia</p>
+                      <div className="space-y-3">
+                        {offerte.inverter.map(inv => (
+                          <div key={inv.id}>
+                            <p className="font-medium text-gray-800 text-sm mb-2">{inv.nome}</p>
+                            <div className="grid grid-cols-2 gap-2">
+                              {inv.opzioni.map(opz => (
+                                <button
+                                  key={opz.id}
+                                  onClick={() => setConfig(prev => ({ ...prev, inverterId: inv.id, inverterOpzioneId: opz.id }))}
+                                  className={`p-3 rounded-lg border-2 transition-all text-center cursor-pointer ${
+                                    config.inverterOpzioneId === opz.id
+                                      ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                                      : "border-gray-200 hover:border-gray-300"
+                                  }`}
+                                >
+                                  <p className="text-sm font-semibold text-gray-900">{opz.unita} unità</p>
+                                  <p className="text-sm font-bold text-black mt-1">€{opz.prezzo.toLocaleString("it-IT")}</p>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 {/* Selezione Batteria (opzionale) */}
-                <div className="bg-white rounded-lg border border-gray-200 p-5">
-                  <h3 className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">4</span>
-                    Batteria di accumulo
-                  </h3>
-                  <p className="text-xs text-gray-500 mb-4">Opzionale — accumula energia per la sera</p>
-                  <div className="space-y-2">
-                    {/* Opzione nessuna batteria */}
-                    <button
-                      onClick={() => setConfig(prev => ({ ...prev, batteriaId: "" }))}
-                      className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
-                        config.batteriaId === ""
-                          ? "border-[#4CAF50] bg-[#B3FE85]/10"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <p className="font-medium text-gray-800 text-sm">Nessuna batteria</p>
-                        <p className="text-sm font-semibold text-gray-500">€0</p>
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(4)}
+                    className="w-full flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                      <span className="w-6 h-6 bg-black text-white rounded-full text-sm flex items-center justify-center">4</span>
+                      Batteria di accumulo
+                    </h3>
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openSections.has(4) ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openSections.has(4) ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
+                    <div className="px-5 pb-5">
+                      <p className="text-xs text-gray-500 mb-4">Opzionale — accumula energia per la sera</p>
+                      <div className="space-y-2">
+                        {/* Opzione nessuna batteria */}
+                        <button
+                          onClick={() => setConfig(prev => ({ ...prev, batteriaId: "" }))}
+                          className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
+                            config.batteriaId === ""
+                              ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                              : "border-gray-200 hover:border-gray-300"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <p className="font-medium text-gray-800 text-sm">Nessuna batteria</p>
+                            <p className="text-sm font-semibold text-gray-500">€0</p>
+                          </div>
+                        </button>
+                        {offerte.batterie.map(bat => (
+                          <button
+                            key={bat.id}
+                            onClick={() => setConfig(prev => ({ ...prev, batteriaId: bat.id }))}
+                            className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
+                              config.batteriaId === bat.id
+                                ? "border-[#4CAF50] bg-[#B3FE85]/10"
+                                : "border-gray-200 hover:border-gray-300"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <p className="font-medium text-gray-800 text-sm">{bat.nome}</p>
+                              <p className="text-sm font-bold text-black">€{bat.prezzo.toLocaleString("it-IT")}</p>
+                            </div>
+                          </button>
+                        ))}
                       </div>
-                    </button>
-                    {offerte.batterie.map(bat => (
-                      <button
-                        key={bat.id}
-                        onClick={() => setConfig(prev => ({ ...prev, batteriaId: bat.id }))}
-                        className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
-                          config.batteriaId === bat.id
-                            ? "border-[#4CAF50] bg-[#B3FE85]/10"
-                            : "border-gray-200 hover:border-gray-300"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <p className="font-medium text-gray-800 text-sm">{bat.nome}</p>
-                          <p className="text-sm font-bold text-black">€{bat.prezzo.toLocaleString("it-IT")}</p>
-                        </div>
-                      </button>
-                    ))}
+                    </div>
                   </div>
                 </div>
             </div>
 
             {/* Riepilogo Preventivo */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-2">
               {/* Configurazione selezionata */}
               <div className="bg-white rounded-lg border border-gray-200 p-5 mb-4">
                 <div className="mb-4">

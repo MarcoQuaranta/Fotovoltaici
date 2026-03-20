@@ -35,7 +35,7 @@ export default function TerminiPage() {
               <h2 className="text-xl font-semibold text-dark mt-8 mb-4">1. Premesse</h2>
               <p>
                 I presenti Termini e Condizioni regolano l&apos;utilizzo del sito web nexevo.it e dei servizi offerti da
-                Nexevo S.r.l. (di seguito &quot;Nexevo&quot; o &quot;Società&quot;), con sede legale in Via dell&apos;Energia 1, 20100 Milano (MI).
+                NEXEVO S.R.L. (di seguito &quot;Nexevo&quot; o &quot;Società&quot;), con sede legale in Via Aniello Falcone 394, 80127 Napoli (NA), P.IVA 10924601213.
               </p>
               <p className="mt-3">
                 L&apos;utilizzo del sito e dei servizi implica l&apos;accettazione integrale dei presenti Termini.
@@ -143,7 +143,7 @@ export default function TerminiPage() {
               <h2 className="text-xl font-semibold text-dark mt-8 mb-4">10. Legge Applicabile e Foro Competente</h2>
               <p>
                 I presenti Termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente
-                il Foro di Milano, salvo il foro del consumatore ove applicabile.
+                il Foro di Napoli, salvo il foro del consumatore ove applicabile.
               </p>
             </section>
 
@@ -153,7 +153,7 @@ export default function TerminiPage() {
               <ul className="list-none mt-3 space-y-1">
                 <li>Email: <a href="mailto:info@nexevo.it" className="text-primary hover:underline">info@nexevo.it</a></li>
                 <li>Telefono: 800 123 456</li>
-                <li>Indirizzo: Via dell&apos;Energia 1, 20100 Milano (MI)</li>
+                <li>Indirizzo: Via Aniello Falcone 394, 80127 Napoli (NA)</li>
               </ul>
             </section>
           </div>
@@ -169,7 +169,7 @@ export default function TerminiPage() {
             <span className="mx-2">-</span>
             <Link href="/cookie" className="hover:text-white transition-colors">Cookie</Link>
             <span className="mx-2">-</span>
-            2026 Nexevo
+            2026 NEXEVO S.R.L. — P.IVA 10924601213
           </p>
         </div>
       </footer>
