@@ -2,6 +2,25 @@
 
 import { useState } from "react";
 
+function isDuplicate(telefono: string): boolean {
+  try {
+    const submitted: string[] = JSON.parse(localStorage.getItem("nexevo_leads") || "[]");
+    return submitted.includes(telefono);
+  } catch {
+    return false;
+  }
+}
+
+function markSubmitted(telefono: string) {
+  try {
+    const submitted: string[] = JSON.parse(localStorage.getItem("nexevo_leads") || "[]");
+    submitted.push(telefono);
+    localStorage.setItem("nexevo_leads", JSON.stringify(submitted));
+  } catch {
+    // silent
+  }
+}
+
 export default function LeadForm() {
   const [formData, setFormData] = useState({
     nome: "",
@@ -10,20 +29,56 @@ export default function LeadForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [duplicateError, setDuplicateError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    if (e.target.name === "telefono") {
+      value = value.replace(/[^\d+]/g, "");
+      if (value.indexOf("+") > 0) value = value.replace(/\+/g, "");
+    }
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     });
+    if (duplicateError) setDuplicateError(false);
+    if (phoneError) setPhoneError(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const digits = formData.telefono.replace(/\D/g, "");
+    if (digits.length < 7) {
+      setPhoneError(true);
+      return;
+    }
+
+    if (isDuplicate(formData.telefono)) {
+      setDuplicateError(true);
+      return;
+    }
+
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch("/api/lead-info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: formData.nome,
+          telefono: formData.telefono,
+          email: formData.email || null,
+        }),
+      });
+      if (res.ok) {
+        markSubmitted(formData.telefono);
+        setIsSubmitted(true);
+      }
+    } catch {
+      // silent
+    }
     setIsSubmitting(false);
-    setIsSubmitted(true);
   };
 
   if (isSubmitted) {
@@ -141,13 +196,23 @@ export default function LeadForm() {
                   type="email"
                   id="email"
                   name="email"
-                  required
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#B3FE85] focus:ring-1 focus:ring-[#B3FE85] focus:outline-none transition-colors"
-                  placeholder="Email"
+                  placeholder="Email (opzionale)"
                 />
               </div>
+
+              {phoneError && (
+                <p className="text-red-500 text-sm text-center">
+                  Inserisci un numero di telefono valido (almeno 7 cifre).
+                </p>
+              )}
+              {duplicateError && (
+                <p className="text-red-500 text-sm text-center">
+                  Hai già inviato una richiesta con questo numero di telefono.
+                </p>
+              )}
 
               <button
                 type="submit"
